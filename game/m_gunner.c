@@ -552,9 +552,6 @@ void gunner_attack(edict_t *self)
 	}
 	else
 	{
-		if (random() <= 0.5)
-			self->monsterinfo.currentmove = &gunner_move_attack_grenade;
-		else
 			self->monsterinfo.currentmove = &gunner_move_attack_chain;
 	}
 }
@@ -593,8 +590,8 @@ void SP_monster_gunner (edict_t *self)
 	gi.soundindex ("gunner/gunatck2.wav");
 	gi.soundindex ("gunner/gunatck3.wav");
 
-	self->movetype = MOVETYPE_STEP;
-	self->solid = SOLID_BBOX;
+	self->movetype = MOVETYPE_NONE;
+	self->solid = SOLID_NOT;
 	self->s.modelindex = gi.modelindex ("models/monsters/gunner/tris.md2");
 	VectorSet (self->mins, -16, -16, -24);
 	VectorSet (self->maxs, 16, 16, 32);
