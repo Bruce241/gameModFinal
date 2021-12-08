@@ -342,52 +342,59 @@ void blaster_touch (edict_t *self, edict_t *other, cplane_t *plane, csurface_t *
 	G_FreeEdict (self);
 }
 
-void fire_blaster (edict_t *self, vec3_t start, vec3_t dir, int damage, int speed, int effect, qboolean hyper)
+void fire_blaster(edict_t* self, vec3_t start, vec3_t dir, int damage, int speed, int effect, qboolean hyper)
 {
-	edict_t	*bolt;
+	edict_t* bolt;
 	trace_t	tr;
 
-	VectorNormalize (dir);
+	VectorNormalize(dir);
 
 	bolt = G_Spawn();
-	bolt->svflags = SVF_DEADMONSTER;
+
+	//bolt->svflags = SVF_DEADMONSTER;
+	bolt->svflags &= ~SVF_NOCLIENT;
 	// yes, I know it looks weird that projectiles are deadmonsters
 	// what this means is that when prediction is used against the object
 	// (blaster/hyperblaster shots), the player won't be solid clipped against
 	// the object.  Right now trying to run into a firing hyperblaster
 	// is very jerky since you are predicted 'against' the shots.
-	VectorCopy (start, bolt->s.origin);
-	VectorCopy (start, bolt->s.old_origin);
-	vectoangles (dir, bolt->s.angles);
-	VectorScale (dir, speed, bolt->velocity);
-	bolt->movetype = MOVETYPE_FLYMISSILE;
+	VectorCopy(start, bolt->s.origin);
+	VectorCopy(start, bolt->s.old_origin);
+	vectoangles(dir, bolt->s.angles);
+	VectorScale(dir, speed, bolt->velocity);
+	//bolt->movetype = MOVETYPE_FLYMISSILE;
+	/*bolt->movetype = MOVETYPE_NONE;
 	bolt->clipmask = MASK_SHOT;
 	bolt->solid = SOLID_BBOX;
 	bolt->s.effects |= effect;
-	VectorClear (bolt->mins);
-	VectorClear (bolt->maxs);
-	bolt->s.modelindex = gi.modelindex ("models/objects/laser/tris.md2");
-	bolt->s.sound = gi.soundindex ("misc/lasfly.wav");
-	bolt->owner = self;
-	bolt->touch = blaster_touch;
-	bolt->nextthink = level.time + 2;
-	bolt->think = G_FreeEdict;
-	bolt->dmg = damage;
-	bolt->classname = "bolt";
+	VectorClear(bolt->mins);
+	VectorClear(bolt->maxs);
+	bolt->s.modelindex = gi.modelindex("models/monsters/soldier/tris.md2");
+	*/
+	//bolt->s.modelindex = gi.modelindex ("models/objects/laser/tris.md2");
+	//bolt->s.sound = gi.soundindex ("misc/lasfly.wav");
+	//bolt->owner = self;
+	//bolt->touch = blaster_touch;
+	//bolt->nextthink = level.time + 2;
+	//bolt->think = G_FreeEdict;
+	//bolt->dmg = damage;
+	//bolt->classname = "monster_soldier";
 	if (hyper)
-		bolt->spawnflags = 1;
-	gi.linkentity (bolt);
+		SP_monster_mutant(bolt);
+	else
+		SP_monster_gunner(bolt);
+	/*gi.linkentity(bolt);
 
 	if (self->client)
-		check_dodge (self, bolt->s.origin, dir, speed);
+		check_dodge(self, bolt->s.origin, dir, speed);
 
-	tr = gi.trace (self->s.origin, NULL, NULL, bolt->s.origin, bolt, MASK_SHOT);
+	tr = gi.trace(self->s.origin, NULL, NULL, bolt->s.origin, bolt, MASK_SHOT);
 	if (tr.fraction < 1.0)
 	{
-		VectorMA (bolt->s.origin, -10, dir, bolt->s.origin);
-		bolt->touch (bolt, tr.ent, NULL, NULL);
-	}
-}	
+		VectorMA(bolt->s.origin, -10, dir, bolt->s.origin);
+		bolt->touch(bolt, tr.ent, NULL, NULL);
+	}*/
+}
 
 
 /*
@@ -399,7 +406,7 @@ static void Grenade_Explode (edict_t *ent)
 {
 	vec3_t		origin;
 	int			mod;
-
+	edict_t	  * monster;
 	if (ent->owner->client)
 		PlayerNoise(ent->owner, ent->s.origin, PNOISE_IMPACT);
 
@@ -449,6 +456,13 @@ static void Grenade_Explode (edict_t *ent)
 	gi.WritePosition (origin);
 	gi.multicast (ent->s.origin, MULTICAST_PHS);
 
+	monster = G_Spawn();
+	if (monster) {
+		monster->s.origin[0] = ent->s.origin[0];
+		monster->s.origin[1] = ent->s.origin[1];
+		monster->s.origin[2] = ent->s.origin[2] + 20;
+	}
+	SP_monster_mutant(monster);
 	G_FreeEdict (ent);
 }
 

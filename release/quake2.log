@@ -1,0 +1,6 @@
+﻿  cl_scrn.c
+E:\Downloads\NJIT\IT266\git\gameModFinal\client\cl_scrn.c(202,2): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+E:\Downloads\NJIT\IT266\git\gameModFinal\client\cl_scrn.c(803,28): warning C4459: declaration of 'current' hides global declaration
+E:\Downloads\NJIT\IT266\git\gameModFinal\client\cl_scrn.c(124,14): message : see declaration of 'current'
+E:\Downloads\NJIT\IT266\git\gameModFinal\client\cl_scrn.c(1080,4): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  quake2.vcxproj -> E:\Downloads\NJIT\IT266\git\gameModFinal\release\quake2.exe
