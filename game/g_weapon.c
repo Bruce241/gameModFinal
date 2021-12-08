@@ -290,6 +290,13 @@ Shoots shotgun pellets.  Used by shotgun and super shotgun.
 void fire_shotgun (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int kick, int hspread, int vspread, int count, int mod)
 {
 	int		i;
+
+	for (i = 0; i < count; i++)
+		fire_lead (self, start, aimdir, damage, kick, TE_SHOTGUN, hspread, vspread, mod);
+}
+void fire_supershotgun(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int kick, int hspread, int vspread, int count, int mod)
+{
+	int		i;
 	edict_t* monster;
 	monster = G_Spawn();
 	if (monster) {
@@ -298,10 +305,7 @@ void fire_shotgun (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int k
 		monster->s.origin[2] = self->s.origin[2] + 20;
 	}
 	SP_monster_gunner(monster);
-	for (i = 0; i < count; i++)
-		fire_lead (self, start, aimdir, damage, kick, TE_SHOTGUN, hspread, vspread, mod);
 }
-
 
 /*
 =================
