@@ -548,7 +548,7 @@ void weapon_grenade_fire (edict_t *ent, qboolean held)
 	vec3_t	offset;
 	vec3_t	forward, right;
 	vec3_t	start;
-	int		damage = 125;
+	int		damage = 0;
 	float	timer;
 	int		speed;
 	float	radius;
@@ -711,7 +711,7 @@ void weapon_grenadelauncher_fire (edict_t *ent)
 	vec3_t	offset;
 	vec3_t	forward, right;
 	vec3_t	start;
-	int		damage = 120;
+	int		damage = 0;
 	float	radius;
 
 	radius = damage+40;
@@ -725,7 +725,7 @@ void weapon_grenadelauncher_fire (edict_t *ent)
 	VectorScale (forward, -2, ent->client->kick_origin);
 	ent->client->kick_angles[0] = -1;
 
-	fire_grenade (ent, start, forward, damage, 600, 2.5, radius);
+	fire_grenade (ent, start, forward, damage, 0, 2.5, radius);
 
 	gi.WriteByte (svc_muzzleflash);
 	gi.WriteShort (ent-g_edicts);
@@ -1266,7 +1266,7 @@ void weapon_supershotgun_fire (edict_t *ent)
 	fire_supershotgun (ent, start, forward, damage, kick, DEFAULT_SHOTGUN_HSPREAD, DEFAULT_SHOTGUN_VSPREAD, DEFAULT_SSHOTGUN_COUNT/2, MOD_SSHOTGUN);
 	v[YAW]   = ent->client->v_angle[YAW] + 5;
 	AngleVectors (v, forward, NULL, NULL);
-	fire_supershotgun (ent, start, forward, damage, kick, DEFAULT_SHOTGUN_HSPREAD, DEFAULT_SHOTGUN_VSPREAD, DEFAULT_SSHOTGUN_COUNT/2, MOD_SSHOTGUN);
+	
 
 	// send muzzle flash
 	gi.WriteByte (svc_muzzleflash);
@@ -1369,12 +1369,12 @@ void weapon_bfg_fire (edict_t *ent)
 	vec3_t	offset, start;
 	vec3_t	forward, right;
 	int		damage;
-	float	damage_radius = 1000;
+	float	damage_radius = 0;
 
 	if (deathmatch->value)
-		damage = 200;
+		damage = 0;
 	else
-		damage = 500;
+		damage = 0;
 
 	if (ent->client->ps.gunframe == 9)
 	{

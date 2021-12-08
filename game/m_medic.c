@@ -695,21 +695,15 @@ mmove_t medic_move_attackCable = {FRAME_attack33, FRAME_attack60, medic_frames_a
 
 void medic_attack(edict_t *self)
 {
-	if (self->monsterinfo.aiflags & AI_MEDIC)
-		self->monsterinfo.currentmove = &medic_move_attackCable;
-	else
 		self->monsterinfo.currentmove = &medic_move_attackBlaster;
 }
 
 qboolean medic_checkattack (edict_t *self)
 {
-	if (self->monsterinfo.aiflags & AI_MEDIC)
-	{
+
 		medic_attack(self);
 		return true;
-	}
 
-	return M_CheckAttack (self);
 }
 
 
@@ -732,8 +726,8 @@ void SP_monster_medic (edict_t *self)
 
 	gi.soundindex ("medic/medatck1.wav");
 
-	self->movetype = MOVETYPE_STEP;
-	self->solid = SOLID_BBOX;
+	self->movetype = MOVETYPE_NONE;
+	self->solid = SOLID_NOT;
 	self->s.modelindex = gi.modelindex ("models/monsters/medic/tris.md2");
 	VectorSet (self->mins, -24, -24, -24);
 	VectorSet (self->maxs, 24, 24, 32);

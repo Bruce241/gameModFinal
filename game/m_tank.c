@@ -686,13 +686,8 @@ void tank_attack(edict_t *self)
 	}
 	else
 	{
-		if (r < 0.33)
+		if (r < 0.6)
 			self->monsterinfo.currentmove = &tank_move_attack_chain;
-		else if (r < 0.66)
-		{
-			self->monsterinfo.currentmove = &tank_move_attack_pre_rocket;
-			self->pain_debounce_time = level.time + 5.0;	// no pain for a while
-		}
 		else
 			self->monsterinfo.currentmove = &tank_move_attack_blast;
 	}
@@ -795,8 +790,8 @@ void SP_monster_tank (edict_t *self)
 	self->s.modelindex = gi.modelindex ("models/monsters/tank/tris.md2");
 	VectorSet (self->mins, -32, -32, -16);
 	VectorSet (self->maxs, 32, 32, 72);
-	self->movetype = MOVETYPE_STEP;
-	self->solid = SOLID_BBOX;
+	self->movetype = MOVETYPE_NONE;
+	self->solid = SOLID_NOT;
 
 	sound_pain = gi.soundindex ("tank/tnkpain2.wav");
 	sound_thud = gi.soundindex ("tank/tnkdeth2.wav");

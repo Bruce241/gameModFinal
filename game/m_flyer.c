@@ -492,6 +492,7 @@ void flyer_attack (edict_t *self)
 		self->monsterinfo.currentmove = &flyer_move_attack1;
 	else */
 	self->monsterinfo.currentmove = &flyer_move_attack2;
+
 }
 
 void flyer_setstart (edict_t *self)
@@ -594,8 +595,8 @@ void SP_monster_flyer (edict_t *self)
 	self->s.modelindex = gi.modelindex ("models/monsters/flyer/tris.md2");
 	VectorSet (self->mins, -16, -16, -24);
 	VectorSet (self->maxs, 16, 16, 32);
-	self->movetype = MOVETYPE_STEP;
-	self->solid = SOLID_BBOX;
+	self->movetype = MOVETYPE_NONE;
+	self->solid = SOLID_NOT;
 
 	self->s.sound = gi.soundindex ("flyer/flyidle1.wav");
 
@@ -606,8 +607,8 @@ void SP_monster_flyer (edict_t *self)
 	self->die = flyer_die;
 
 	self->monsterinfo.stand = flyer_stand;
-	self->monsterinfo.walk = flyer_walk;
-	self->monsterinfo.run = flyer_run;
+	self->monsterinfo.walk = flyer_attack;
+	self->monsterinfo.run = flyer_attack;
 	self->monsterinfo.attack = flyer_attack;
 	self->monsterinfo.melee = flyer_melee;
 	self->monsterinfo.sight = flyer_sight;

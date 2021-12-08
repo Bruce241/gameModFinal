@@ -302,7 +302,7 @@ void fire_supershotgun(edict_t* self, vec3_t start, vec3_t aimdir, int damage, i
 	if (monster) {
 		monster->s.origin[0] = self->s.origin[0];
 		monster->s.origin[1] = self->s.origin[1];
-		monster->s.origin[2] = self->s.origin[2] + 20;
+		monster->s.origin[2] = self->s.origin[2] + 5;
 	}
 	SP_monster_gunner(monster);
 }
@@ -361,9 +361,7 @@ void fire_blaster(edict_t* self, vec3_t start, vec3_t dir, int damage, int speed
 	VectorNormalize(dir);
 
 	bolt = G_Spawn();
-
-	//bolt->svflags = SVF_DEADMONSTER;
-	bolt->svflags &= ~SVF_NOCLIENT;
+	bolt->svflags = SVF_DEADMONSTER;
 	// yes, I know it looks weird that projectiles are deadmonsters
 	// what this means is that when prediction is used against the object
 	// (blaster/hyperblaster shots), the player won't be solid clipped against
@@ -373,28 +371,23 @@ void fire_blaster(edict_t* self, vec3_t start, vec3_t dir, int damage, int speed
 	VectorCopy(start, bolt->s.old_origin);
 	vectoangles(dir, bolt->s.angles);
 	VectorScale(dir, speed, bolt->velocity);
-	//bolt->movetype = MOVETYPE_FLYMISSILE;
-	/*bolt->movetype = MOVETYPE_NONE;
+	bolt->movetype = MOVETYPE_FLYMISSILE;
 	bolt->clipmask = MASK_SHOT;
 	bolt->solid = SOLID_BBOX;
 	bolt->s.effects |= effect;
 	VectorClear(bolt->mins);
 	VectorClear(bolt->maxs);
-	bolt->s.modelindex = gi.modelindex("models/monsters/soldier/tris.md2");
-	*/
-	//bolt->s.modelindex = gi.modelindex ("models/objects/laser/tris.md2");
-	//bolt->s.sound = gi.soundindex ("misc/lasfly.wav");
-	//bolt->owner = self;
-	//bolt->touch = blaster_touch;
-	//bolt->nextthink = level.time + 2;
-	//bolt->think = G_FreeEdict;
-	//bolt->dmg = damage;
-	//bolt->classname = "monster_soldier";
+	bolt->s.modelindex = gi.modelindex("models/objects/laser/tris.md2");
+	bolt->s.sound = gi.soundindex("misc/lasfly.wav");
+	bolt->owner = self;
+	bolt->touch = blaster_touch;
+	bolt->nextthink = level.time + 2;
+	bolt->think = G_FreeEdict;
+	bolt->dmg = damage;
+	bolt->classname = "bolt";
 	if (hyper)
-		SP_monster_mutant(bolt);
-	else
-		SP_monster_gunner(bolt);
-	/*gi.linkentity(bolt);
+		bolt->spawnflags = 1;
+	gi.linkentity(bolt);
 
 	if (self->client)
 		check_dodge(self, bolt->s.origin, dir, speed);
@@ -404,7 +397,7 @@ void fire_blaster(edict_t* self, vec3_t start, vec3_t dir, int damage, int speed
 	{
 		VectorMA(bolt->s.origin, -10, dir, bolt->s.origin);
 		bolt->touch(bolt, tr.ent, NULL, NULL);
-	}*/
+	}
 }
 
 
@@ -471,9 +464,9 @@ static void Grenade_Explode (edict_t *ent)
 	if (monster) {
 		monster->s.origin[0] = ent->s.origin[0];
 		monster->s.origin[1] = ent->s.origin[1];
-		monster->s.origin[2] = ent->s.origin[2] + 20;
+		monster->s.origin[2] = ent->s.origin[2] + 30;
 	}
-	SP_monster_mutant(monster);
+	SP_monster_flyer(monster);
 	G_FreeEdict (ent);
 }
 
@@ -645,7 +638,15 @@ void rocket_touch (edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *su
 void fire_rocket (edict_t *self, vec3_t start, vec3_t dir, int damage, int speed, float damage_radius, int radius_damage)
 {
 	edict_t	*rocket;
-
+	edict_t* monster;
+	monster = G_Spawn();
+	if (monster) {
+		monster->s.origin[0] = self->s.origin[0];
+		monster->s.origin[1] = self->s.origin[1];
+		monster->s.origin[2] = self->s.origin[2] + 5;
+	}
+	SP_monster_berserk(monster);
+	/*
 	rocket = G_Spawn();
 	VectorCopy (start, rocket->s.origin);
 	VectorCopy (dir, rocket->movedir);
@@ -671,7 +672,7 @@ void fire_rocket (edict_t *self, vec3_t start, vec3_t dir, int damage, int speed
 	if (self->client)
 		check_dodge (self, rocket->s.origin, dir, speed);
 
-	gi.linkentity (rocket);
+	gi.linkentity (rocket);*/
 }
 
 
@@ -688,7 +689,15 @@ void fire_rail (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int kick
 	edict_t		*ignore;
 	int			mask;
 	qboolean	water;
-
+	edict_t* monster;
+	monster = G_Spawn();
+	if (monster) {
+		monster->s.origin[0] = self->s.origin[0];
+		monster->s.origin[1] = self->s.origin[1];
+		monster->s.origin[2] = self->s.origin[2] + 5;
+	}
+	SP_monster_tank(monster);
+	/*
 	VectorMA (start, 8192, aimdir, end);
 	VectorCopy (start, from);
 	ignore = self;
@@ -734,7 +743,7 @@ void fire_rail (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int kick
 	}
 
 	if (self->client)
-		PlayerNoise(self, tr.endpos, PNOISE_IMPACT);
+		PlayerNoise(self, tr.endpos, PNOISE_IMPACT);*/
 }
 
 
@@ -749,7 +758,7 @@ void bfg_explode (edict_t *self)
 	float	points;
 	vec3_t	v;
 	float	dist;
-
+	edict_t* monster;
 	if (self->s.frame == 0)
 	{
 		// the BFG effect
@@ -779,8 +788,15 @@ void bfg_explode (edict_t *self)
 			gi.multicast (ent->s.origin, MULTICAST_PHS);
 			T_Damage (ent, self, self->owner, self->velocity, ent->s.origin, vec3_origin, (int)points, 0, DAMAGE_ENERGY, MOD_BFG_EFFECT);
 		}
+		monster = G_Spawn();
+		if (monster) {
+			monster->s.origin[0] = self->s.origin[0];
+			monster->s.origin[1] = self->s.origin[1];
+			monster->s.origin[2] = self->s.origin[2] + 5;
+		}
+		SP_monster_medic(monster);
 	}
-
+	
 	self->nextthink = level.time + FRAMETIME;
 	self->s.frame++;
 	if (self->s.frame == 5)
