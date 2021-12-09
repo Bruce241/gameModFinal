@@ -165,7 +165,11 @@ void Cmd_Give_f (edict_t *ent)
 	}
 
 	name = gi.args();
-
+	gi.bprintf(PRINT_MEDIUM,"abc");
+	if (ent->money == 200) {
+		ent->money = 100;
+		gi.bprintf(PRINT_MEDIUM, "def");
+	}
 	if (Q_stricmp(name, "all") == 0)
 		give_all = true;
 	else

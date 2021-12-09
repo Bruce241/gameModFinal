@@ -1,12 +1,11 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(499,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
-  m_medic.c
-E:\Downloads\NJIT\IT266\git\gameModFinal\game\m_medic.c(116,43): warning C4100: 'other': unreferenced formal parameter
-E:\Downloads\NJIT\IT266\git\gameModFinal\game\m_medic.c(317,65): warning C4100: 'damage': unreferenced formal parameter
-E:\Downloads\NJIT\IT266\git\gameModFinal\game\m_medic.c(317,55): warning C4100: 'kick': unreferenced formal parameter
-E:\Downloads\NJIT\IT266\git\gameModFinal\game\m_medic.c(317,42): warning C4100: 'other': unreferenced formal parameter
-E:\Downloads\NJIT\IT266\git\gameModFinal\game\m_medic.c(413,90): warning C4100: 'point': unreferenced formal parameter
-E:\Downloads\NJIT\IT266\git\gameModFinal\game\m_medic.c(413,61): warning C4100: 'attacker': unreferenced formal parameter
-E:\Downloads\NJIT\IT266\git\gameModFinal\game\m_medic.c(413,41): warning C4100: 'inflictor': unreferenced formal parameter
-E:\Downloads\NJIT\IT266\git\gameModFinal\game\m_medic.c(494,59): warning C4100: 'eta': unreferenced formal parameter
+  g_spawn.c
+E:\Downloads\NJIT\IT266\git\gameModFinal\game\g_spawn.c(380,5): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+E:\Downloads\NJIT\IT266\git\gameModFinal\game\g_spawn.c(433,3): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+E:\Downloads\NJIT\IT266\git\gameModFinal\game\g_spawn.c(543,2): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+E:\Downloads\NJIT\IT266\git\gameModFinal\game\g_spawn.c(544,2): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+E:\Downloads\NJIT\IT266\git\gameModFinal\game\g_spawn.c(820,10): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+E:\Downloads\NJIT\IT266\git\gameModFinal\game\g_spawn.c(827,3): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+E:\Downloads\NJIT\IT266\git\gameModFinal\game\g_spawn.c(830,3): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
      Creating library .\..\release\gamex86.lib and object .\..\release\gamex86.exp
   game.vcxproj -> E:\Program Files\Steam\steamapps\common\Quake 2\mod\gamex86.dll

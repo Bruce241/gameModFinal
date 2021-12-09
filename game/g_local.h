@@ -1052,6 +1052,7 @@ struct edict_s
 	float		last_move_time;
 
 	int			health;
+	int			money;
 	int			max_health;
 	int			gib_health;
 	int			deadflag;

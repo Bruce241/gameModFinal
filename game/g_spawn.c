@@ -780,6 +780,14 @@ char *dm_statusbar =
   "xv 64 "
   "stat_string 16 "
 "endif "
+
+// money
+"if 18 "
+  "xv 210 "
+  "num 4	18"
+  "xv 100 "
+  "string Money "
+"endif "
 ;
 
 

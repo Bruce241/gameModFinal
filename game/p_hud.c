@@ -520,6 +520,8 @@ void G_SetStats (edict_t *ent)
 		ent->client->ps.stats[STAT_HELPICON] = 0;
 
 	ent->client->ps.stats[STAT_SPECTATOR] = 0;
+	ent->money = 200;
+	ent->client->ps.stats[STAT_MONEY] = ent->money;
 }
 
 /*
