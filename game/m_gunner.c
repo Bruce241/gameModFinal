@@ -27,7 +27,7 @@ GUNNER
 
 #include "g_local.h"
 #include "m_gunner.h"
-
+#include "g_var.h"
 
 static int	sound_pain;
 static int	sound_pain2;
@@ -443,7 +443,7 @@ void GunnerFire (edict_t *self)
 
 	VectorSubtract (target, start, aim);
 	VectorNormalize (aim);
-	monster_fire_bullet (self, start, aim, 3, 4, DEFAULT_BULLET_HSPREAD, DEFAULT_BULLET_VSPREAD, flash_number);
+	monster_fire_bullet (self, start, aim, 3*gunner_damage_mult, 4, DEFAULT_BULLET_HSPREAD, DEFAULT_BULLET_VSPREAD, flash_number);
 }
 
 void GunnerGrenade (edict_t *self)

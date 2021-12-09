@@ -27,7 +27,7 @@ TANK
 
 #include "g_local.h"
 #include "m_tank.h"
-
+#include "g_var.h"
 
 void tank_refire_rocket (edict_t *self);
 void tank_doattack_rocket (edict_t *self);
@@ -350,7 +350,7 @@ void TankBlaster (edict_t *self)
 	end[2] += self->enemy->viewheight;
 	VectorSubtract (end, start, dir);
 
-	monster_fire_blaster (self, start, dir, 30, 800, flash_number, EF_BLASTER);
+	monster_fire_blaster (self, start, dir, 30*tank_damage_mult, 800, flash_number, EF_BLASTER);
 }	
 
 void TankStrike (edict_t *self)
@@ -417,7 +417,7 @@ void TankMachineGun (edict_t *self)
 
 	AngleVectors (dir, forward, NULL, NULL);
 
-	monster_fire_bullet (self, start, forward, 20, 4, DEFAULT_BULLET_HSPREAD, DEFAULT_BULLET_VSPREAD, flash_number);
+	monster_fire_bullet (self, start, forward, 20*tank_damage_mult, 4, DEFAULT_BULLET_HSPREAD, DEFAULT_BULLET_VSPREAD, flash_number);
 }	
 
 

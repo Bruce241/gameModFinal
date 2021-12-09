@@ -165,6 +165,11 @@ void Cmd_Give_f (edict_t *ent)
 	}*/
 
 	name = gi.args();
+	tank_damage_mult = 1;
+	gunner_damage_mult = 1;
+	medic_damage_mult = 1;
+	berserk_damage_mult = 1;
+	flyer_damage_mult = 1;
 	if (Q_stricmp(name, "shotgun") == 0)
 		if (ent->money >= 200)
 			ent->money -= 300;
@@ -920,6 +925,45 @@ void Cmd_PlayerList_f(edict_t *ent)
 	gi.cprintf(ent, PRINT_HIGH, "%s", text);
 }
 
+void Cmd_Upgrade_Tank_f(edict_t* ent)
+{
+	if (ent->money > 100) {
+		ent->money -= 100;
+		tank_damage_mult += 1;
+	}
+}
+
+void Cmd_Upgrade_Gunner_f(edict_t* ent)
+{
+	if (ent->money > 100) {
+		ent->money -= 100;
+		gunner_damage_mult += 1;
+	}
+}
+
+void Cmd_Upgrade_Medic_f(edict_t* ent)
+{
+	if (ent->money > 100) {
+		ent->money -= 100;
+		medic_damage_mult += 1;
+	}
+}
+
+void Cmd_Upgrade_Berserk_f(edict_t* ent)
+{
+	if (ent->money > 100) {
+		ent->money -= 100;
+		berserk_damage_mult += 1;
+	}
+}
+
+void Cmd_Upgrade_Flyer_f(edict_t* ent)
+{
+	if (ent->money > 100) {
+		ent->money -= 100;
+		flyer_damage_mult += 1;
+	}
+}
 
 /*
 =================
@@ -1008,6 +1052,16 @@ void ClientCommand (edict_t *ent)
 		Cmd_Wave_f (ent);
 	else if (Q_stricmp(cmd, "playerlist") == 0)
 		Cmd_PlayerList_f(ent);
+	else if (Q_stricmp(cmd, "upgradetank") == 0)
+		Cmd_Upgrade_Tank_f(ent);
+	else if (Q_stricmp(cmd, "upgradegunner") == 0)
+		Cmd_Upgrade_Gunner_f(ent);
+	else if (Q_stricmp(cmd, "upgrademedic") == 0)
+		Cmd_Upgrade_Medic_f(ent);
+	else if (Q_stricmp(cmd, "upgradeberserk") == 0)
+		Cmd_Upgrade_Berserk_f(ent);
+	else if (Q_stricmp(cmd, "upgradeflyer") == 0)
+		Cmd_Upgrade_Flyer_f(ent);
 	else	// anything that doesn't match a command will be a chat
 		Cmd_Say_f (ent, false, true);
 }

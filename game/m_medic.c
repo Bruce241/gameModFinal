@@ -27,6 +27,7 @@ MEDIC
 
 #include "g_local.h"
 #include "m_medic.h"
+#include "g_var.h"
 
 qboolean visible (edict_t *self, edict_t *other);
 
@@ -361,7 +362,7 @@ void medic_fire_blaster (edict_t *self)
 	end[2] += self->enemy->viewheight;
 	VectorSubtract (end, start, dir);
 
-	monster_fire_blaster (self, start, dir, 2, 1000, MZ2_MEDIC_BLASTER_1, effect);
+	monster_fire_blaster (self, start, dir, 2*medic_damage_mult, 1000, MZ2_MEDIC_BLASTER_1, effect);
 }
 
 

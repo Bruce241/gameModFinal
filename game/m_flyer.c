@@ -27,6 +27,7 @@ flyer
 
 #include "g_local.h"
 #include "m_flyer.h"
+#include "g_var.h"
 
 qboolean visible (edict_t *self, edict_t *other);
 
@@ -383,7 +384,7 @@ void flyer_fire (edict_t *self, int flash_number)
 	end[2] += self->enemy->viewheight;
 	VectorSubtract (end, start, dir);
 
-	monster_fire_blaster (self, start, dir, 1, 1000, flash_number, effect);
+	monster_fire_blaster (self, start, dir, 1*flyer_damage_mult, 1000, flash_number, effect);
 }
 
 void flyer_fireleft (edict_t *self)
