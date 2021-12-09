@@ -158,18 +158,35 @@ void Cmd_Give_f (edict_t *ent)
 	qboolean	give_all;
 	edict_t		*it_ent;
 
-	if (deathmatch->value && !sv_cheats->value)
+	/*if (deathmatch->value && !sv_cheats->value)
 	{
 		gi.cprintf (ent, PRINT_HIGH, "You must run the server with '+set cheats 1' to enable this command.\n");
 		return;
-	}
+	}*/
 
 	name = gi.args();
-	gi.bprintf(PRINT_MEDIUM,"abc");
-	if (ent->money == 200) {
-		ent->money = 100;
-		gi.bprintf(PRINT_MEDIUM, "def");
-	}
+	if (Q_stricmp(name, "shotgun") == 0)
+		if (ent->money >= 200)
+			ent->money -= 300;
+		else
+			return;
+	if (Q_stricmp(name, "machinegun") == 0)
+		if (ent->money >= 300)
+			ent->money -= 400;
+		else
+			return;
+	if (Q_stricmp(name, "chaingun") == 0)
+		if (ent->money >= 400)
+			ent->money -= 500;
+		else
+			return;
+	if (Q_stricmp(name, "hyperblaster") == 0)
+		if (ent->money >= 500)
+			ent->money -= 600;
+		else
+			return;
+	ent->money += 100;
+	
 	if (Q_stricmp(name, "all") == 0)
 		give_all = true;
 	else

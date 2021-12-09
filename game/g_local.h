@@ -838,6 +838,7 @@ typedef struct
 
 	// values saved and restored from edicts when changing levels
 	int			health;
+	int			money;
 	int			max_health;
 	int			savedFlags;
 
