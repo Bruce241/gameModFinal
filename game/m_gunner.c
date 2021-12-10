@@ -577,7 +577,7 @@ void gunner_refire_chain(edict_t *self)
 */
 void SP_monster_gunner (edict_t *self)
 {
-	//self->monsterinfo.aiflags |= AI_GOOD_GUY;
+	self->monsterinfo.aiflags |= AI_GOOD_GUY;
 
 	sound_death = gi.soundindex ("gunner/death1.wav");	
 	sound_pain = gi.soundindex ("gunner/gunpain2.wav");	

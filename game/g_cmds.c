@@ -965,6 +965,18 @@ void Cmd_Upgrade_Flyer_f(edict_t* ent)
 	}
 }
 
+void Cmd_Spawn_Gladiator_f(edict_t* ent)
+{
+	edict_t* monster;
+	monster = G_Spawn();
+	if (monster) {
+		monster->s.origin[0] = ent->s.origin[0] - 50;
+		monster->s.origin[1] = ent->s.origin[1];
+		monster->s.origin[2] = ent->s.origin[2] + 5;
+	}
+	SP_monster_gladiator(monster);
+}
+
 /*
 =================
 ClientCommand
@@ -1062,6 +1074,8 @@ void ClientCommand (edict_t *ent)
 		Cmd_Upgrade_Berserk_f(ent);
 	else if (Q_stricmp(cmd, "upgradeflyer") == 0)
 		Cmd_Upgrade_Flyer_f(ent);
+	else if (Q_stricmp(cmd, "spawngladiator") == 0)
+		Cmd_Spawn_Gladiator_f(ent);
 	else	// anything that doesn't match a command will be a chat
 		Cmd_Say_f (ent, false, true);
 }
