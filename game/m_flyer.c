@@ -612,7 +612,7 @@ void SP_monster_flyer (edict_t *self)
 	self->monsterinfo.walk = flyer_attack;
 	self->monsterinfo.run = flyer_attack;
 	self->monsterinfo.attack = flyer_attack;
-	self->monsterinfo.melee = flyer_melee;
+	self->monsterinfo.melee = flyer_stand;
 	self->monsterinfo.sight = flyer_sight;
 	self->monsterinfo.idle = flyer_idle;
 

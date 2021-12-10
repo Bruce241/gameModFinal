@@ -1204,7 +1204,7 @@ void SP_monster_soldier_x (edict_t *self)
 	self->monsterinfo.scale = MODEL_SCALE;
 	VectorSet (self->mins, -16, -16, -24);
 	VectorSet (self->maxs, 16, 16, 32);
-	self->movetype = MOVETYPE_STEP;
+	self->movetype = MOVETYPE_NONE;
 	self->solid = SOLID_BBOX;
 
 	sound_idle =	gi.soundindex ("soldier/solidle1.wav");
@@ -1221,7 +1221,7 @@ void SP_monster_soldier_x (edict_t *self)
 	self->monsterinfo.walk = soldier_walk;
 	self->monsterinfo.run = soldier_run;
 	self->monsterinfo.dodge = soldier_dodge;
-	self->monsterinfo.attack = soldier_attack;
+	self->monsterinfo.attack = soldier_walk;
 	self->monsterinfo.melee = NULL;
 	self->monsterinfo.sight = soldier_sight;
 

@@ -586,7 +586,7 @@ void SP_monster_hover (edict_t *self)
 
 	self->s.sound = gi.soundindex ("hover/hovidle1.wav");
 
-	self->movetype = MOVETYPE_STEP;
+	self->movetype = MOVETYPE_NONE;
 	self->solid = SOLID_BBOX;
 	self->s.modelindex = gi.modelindex("models/monsters/hover/tris.md2");
 	VectorSet (self->mins, -24, -24, -24);
@@ -600,12 +600,12 @@ void SP_monster_hover (edict_t *self)
 	self->die = hover_die;
 
 	self->monsterinfo.stand = hover_stand;
-	self->monsterinfo.walk = hover_walk;
-	self->monsterinfo.run = hover_run;
+	self->monsterinfo.walk = hover_stand;
+	self->monsterinfo.run = hover_stand;
 //	self->monsterinfo.dodge = hover_dodge;
-	self->monsterinfo.attack = hover_start_attack;
+	self->monsterinfo.attack = hover_walk;
 	self->monsterinfo.sight = hover_sight;
-	self->monsterinfo.search = hover_search;
+	self->monsterinfo.search = hover_stand;
 
 	gi.linkentity (self);
 

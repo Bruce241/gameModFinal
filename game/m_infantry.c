@@ -572,7 +572,7 @@ void SP_monster_infantry (edict_t *self)
 	sound_idle = gi.soundindex ("infantry/infidle1.wav");
 	
 
-	self->movetype = MOVETYPE_STEP;
+	self->movetype = MOVETYPE_NONE;
 	self->solid = SOLID_BBOX;
 	self->s.modelindex = gi.modelindex("models/monsters/infantry/tris.md2");
 	VectorSet (self->mins, -16, -16, -24);
@@ -589,7 +589,7 @@ void SP_monster_infantry (edict_t *self)
 	self->monsterinfo.walk = infantry_walk;
 	self->monsterinfo.run = infantry_run;
 	self->monsterinfo.dodge = infantry_dodge;
-	self->monsterinfo.attack = infantry_attack;
+	self->monsterinfo.attack = infantry_walk;
 	self->monsterinfo.melee = NULL;
 	self->monsterinfo.sight = infantry_sight;
 	self->monsterinfo.idle = infantry_fidget;

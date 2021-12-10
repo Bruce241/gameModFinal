@@ -371,7 +371,7 @@ void SP_monster_flipper (edict_t *self)
 	sound_search	= gi.soundindex ("flipper/flpsrch1.wav");
 	sound_sight		= gi.soundindex ("flipper/flpsght1.wav");
 
-	self->movetype = MOVETYPE_STEP;
+	self->movetype = MOVETYPE_NONE;
 	self->solid = SOLID_BBOX;
 	self->s.modelindex = gi.modelindex ("models/monsters/flipper/tris.md2");
 	VectorSet (self->mins, -16, -16, 0);
@@ -387,7 +387,7 @@ void SP_monster_flipper (edict_t *self)
 	self->monsterinfo.stand = flipper_stand;
 	self->monsterinfo.walk = flipper_walk;
 	self->monsterinfo.run = flipper_start_run;
-	self->monsterinfo.melee = flipper_melee;
+	self->monsterinfo.melee = flipper_walk;
 	self->monsterinfo.sight = flipper_sight;
 
 	gi.linkentity (self);
