@@ -582,6 +582,7 @@ void SP_monster_flyer (edict_t *self)
 		self->targetname = self->target;
 		self->target = NULL;
 	}
+	self->monsterinfo.aiflags |= AI_GOOD_GUY;
 
 	sound_sight = gi.soundindex ("flyer/flysght1.wav");
 	sound_idle = gi.soundindex ("flyer/flysrch1.wav");

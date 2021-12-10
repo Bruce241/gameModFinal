@@ -419,6 +419,8 @@ void SP_monster_berserk (edict_t *self)
 	}*/
 
 	// pre-caches
+	self->monsterinfo.aiflags |= AI_GOOD_GUY;
+
 	sound_pain  = gi.soundindex ("berserk/berpain2.wav");
 	sound_die   = gi.soundindex ("berserk/berdeth2.wav");
 	sound_idle  = gi.soundindex ("berserk/beridle1.wav");

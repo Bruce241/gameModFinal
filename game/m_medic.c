@@ -713,6 +713,7 @@ qboolean medic_checkattack (edict_t *self)
 void SP_monster_medic (edict_t *self)
 {
 
+	self->monsterinfo.aiflags |= AI_GOOD_GUY;
 
 	sound_idle1 = gi.soundindex ("medic/idle.wav");
 	sound_pain1 = gi.soundindex ("medic/medpain1.wav");
