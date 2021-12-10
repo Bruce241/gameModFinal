@@ -1280,6 +1280,7 @@ void ClientBeginDeathmatch (edict_t *ent)
 	gi.multicast (ent->s.origin, MULTICAST_PVS);
 
 	gi.bprintf (PRINT_HIGH, "%s entered the game\n", ent->client->pers.netname);
+	gi.centerprintf(ent, "HELP SCREEN");
 	// make sure all view stuff is valid
 	ClientEndServerFrame (ent);
 }
