@@ -1280,13 +1280,13 @@ void ClientBeginDeathmatch (edict_t *ent)
 	gi.multicast (ent->s.origin, MULTICAST_PVS);
 
 	gi.bprintf (PRINT_HIGH, "%s entered the game\n", ent->client->pers.netname);
-	gi.centerprintf(ent, "Welcome to Bloons TD in Quake 2.\n\nStart by pressing 'Delete'\nto give yourself monkey spawners\nand 500 money.\n\nThen, try spawning bloons by pressing\n'c','v','b','n','m'.\n\nYou can also buy weapons\nto shoot the bloons with\n'u','i','o','p'.\n\nMonkey upgrades are also available for purchase using keys\n'g','h','j','k','l'.\n\nEnjoy!");
+	gi.centerprintf(ent, "Welcome to Bloons TD in Quake 2.\n\nStart by pressing 'Delete'\nto give yourself monkey spawners\nand 500 money.\n\nThen, try spawning bloons by pressing\n'c','v','b','n','m'.\n\nYou can also buy weapons\nto shoot the bloons with\n'u','i','o','p'.\n\nMonkey upgrades can be bought using keys\n'g','h','j','k','l'.\n\nEnjoy!");
 	// make sure all view stuff is valid
 	ClientEndServerFrame (ent);
 }
 
 
-/*
+/*333
 ===========
 ClientBegin
 
